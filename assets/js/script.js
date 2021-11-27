@@ -72,6 +72,9 @@ $(".list-group").on("blur", "textarea", function() {
   var index = $(this)
     .closest(".list-group-item")
     .index();
+  
+  tasks[status][index].text = text;
+  saveTasks();
 
   // recreate p element
   var taskP = $("<p>")
@@ -80,9 +83,6 @@ $(".list-group").on("blur", "textarea", function() {
   
   // replace textarea with p element
   $(this).replaceWith(taskP);
-
-  tasks[status][index].text = text;
-  saveTasks();
 });
 
 // due date was clicked
@@ -123,6 +123,10 @@ $(".list-group").on("blur", "input[type='text']", function() {
     .closest(".list-group-item")
     .index();
 
+  // update task in array and re-save to localstorage
+  tasks[status][index].date = date;
+  saveTasks();
+
   // recreate span element with bootstrap classes
   var taskSpan = $("<span>")
     .addClass("badge badge-primary badge-pill")
@@ -130,10 +134,6 @@ $(".list-group").on("blur", "input[type='text']", function() {
 
   // replace input with span element
   $(this).replaceWith(taskSpan);
-
-  // update task in array and re-save to localstorage
-  tasks[status][index].date = date;
-  saveTasks();
 });
 
 // modal was triggered
