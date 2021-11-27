@@ -265,3 +265,9 @@ $("#trash").droppable({
     console.log("out");
   }
 });
+
+setInterval(function () {
+  $(".card .list-group-item").each(function(index, el) {
+    auditTask(el);
+  });
+}, 1800000);
